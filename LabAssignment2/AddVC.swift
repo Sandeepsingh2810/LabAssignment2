@@ -8,7 +8,10 @@
 
 import UIKit
 import CoreData
-class AddVC: UIViewController {
+
+
+class AddVC: UIViewController
+{
 
     @IBOutlet var textfields : [UITextField]!
 
@@ -22,7 +25,6 @@ class AddVC: UIViewController {
                
                SaveCoreData()
 
-      
                NotificationCenter.default.addObserver(self, selector: #selector(SaveCoreData), name: UIApplication.willResignActiveNotification, object: nil)
                
            }
@@ -31,10 +33,8 @@ class AddVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
                    
                delegate?.updateArray(taskArray: tasks!)
-               
          
-               }
-    
+    }
     
     
     @IBAction func addTask(_ sender: UIButton) {
@@ -48,10 +48,11 @@ class AddVC: UIViewController {
                          for textField in textfields {
                               textField.text = ""
                              textField.resignFirstResponder()
-                         }
+                
+        }
               
               
-                     }
+        }
     
     @objc func SaveCoreData(){
              
@@ -79,7 +80,9 @@ class AddVC: UIViewController {
                 LoadCoreData()
            }
 
-    func clearCoreData(){
+    func clearCoreData()
+    
+    {
      
      let appDelegate = UIApplication.shared.delegate as! AppDelegate
 

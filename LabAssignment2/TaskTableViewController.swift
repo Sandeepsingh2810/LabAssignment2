@@ -18,8 +18,13 @@ class TaskTableViewController: UITableViewController,UISearchBarDelegate {
        @IBOutlet var tableview: UITableView!
        
        @IBOutlet weak var completed: UIButton!
+    
+    
+    
        var isSearch = false
+    
        var isImportant = false
+    
        var tasks : [Task]?
        
        
@@ -27,20 +32,15 @@ class TaskTableViewController: UITableViewController,UISearchBarDelegate {
            super.viewDidLoad()
         searchBar.delegate = self
           LoadCoreData()
-       
-
-       }
-
+}
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-           
            return 1
        }
 
        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           
            if isSearch
            {
              return searchArray?.count ?? 0
@@ -56,32 +56,51 @@ class TaskTableViewController: UITableViewController,UISearchBarDelegate {
         
     let cell = tableView.dequeueReusableCell(withIdentifier:"TaskCell")
           
-         if isSearch{
+         if isSearch
+         
+         
+         {
          let task = searchArray![indexPath.row]
          cell?.textLabel?.text = task.title
          cell?.detailTextLabel?.text = "\(task.days) days "
-         if task.days == 0 {
-           cell?.contentView.backgroundColor = .green
+         if task.days == 0
+         
+         {
+           cell?.contentView.backgroundColor = .black
            cell?.detailTextLabel?.text = "Completed"
             
          }
-         else {
+            
+            
+         else
+         
+         
+         {
+            
+            
            cell?.contentView.backgroundColor = .white
+            
+            
          }
            cell?.textLabel?.textColor = .black
        
          }
          else
+            
          {
            let task = tasks![indexPath.row]
            cell?.textLabel?.text = task.title
            cell?.detailTextLabel?.text = "\(task.days) days "
-           if task.days == 0 {
-             cell?.contentView.backgroundColor = .green
+           if task.days == 0
+           
+           {
+             cell?.contentView.backgroundColor = .orange
              cell?.detailTextLabel?.text = "Completed"
               
            }
-           else {
+           else
+           
+           {
              cell?.contentView.backgroundColor = .white
            }
              cell?.textLabel?.textColor = .black
@@ -140,7 +159,7 @@ class TaskTableViewController: UITableViewController,UISearchBarDelegate {
          
       }
        
-      AddDayAction.backgroundColor = .black
+      AddDayAction.backgroundColor = .cyan
       return UISwipeActionsConfiguration(actions: [deleteAction , AddDayAction])
        
     }
@@ -153,14 +172,11 @@ class TaskTableViewController: UITableViewController,UISearchBarDelegate {
       return .none
     }
      
-    
-     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
       let move = self.tasks![sourceIndexPath.row]
       tasks!.remove(at: sourceIndexPath.row)
       tasks!.insert(move, at: destinationIndexPath.row)
     }
-
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
      
@@ -229,7 +245,6 @@ class TaskTableViewController: UITableViewController,UISearchBarDelegate {
       return true;
     }
     
-    
     func LoadCoreData(){
 
         tasks = [Task]()
@@ -261,9 +276,6 @@ class TaskTableViewController: UITableViewController,UISearchBarDelegate {
       
     }
     
-    
-    
-    
     @IBAction func sortTask(_ sender: UIBarButtonItem) {
            self.tasks?.sort(by: {$0.title.lowercased() < $1.title.lowercased()} )
            
@@ -290,4 +302,9 @@ class TaskTableViewController: UITableViewController,UISearchBarDelegate {
                                  alertcontroller.addAction(AddItemAction)
                                  self.present(alertcontroller, animated: true, completion: nil)
     }
+    
+    
+    
+    
+    
 }

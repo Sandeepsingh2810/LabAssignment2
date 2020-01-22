@@ -7,7 +7,10 @@
 //
 
 import Foundation
-class Task{
+
+class Task
+
+{
     var title : String
     var days : Int
     
